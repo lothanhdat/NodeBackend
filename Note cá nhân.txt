@@ -1,0 +1,22 @@
+Remove-item alias:curl
+curl http://localhost:3055
+curl http://localhost:3055 --include
+
+node server.js
+node --watch server.js
+
+npm i helmet --save-dev
+
+lúc test compression thì nhớ disable cache
+
+Nhiều người sẽ đặt ra câu hỏi, sao lúc thầy lại --save-dev có lúc lại không có vậy.
+Câu trả lời là 
+1. Với --save-dev thì nó sẽ add vào chỗ dev-dependences và ngược lại thì nó sẽ add vào dependencies
+Vậy câu hỏi đặt ra là sự khác biệt giữ dev-dependences, dependencies là gì
+1. Dev-dependences thì sẽ là những thư viện ở trên môi trường dev ( ở đây là development) 
+2. dependences là những thư viện để app chạy được trên production 
+Nếu bạn chạy npm install trên production thì nó sẽ install cả 2. dev-dependences , dependences
+Nhưng trong lúc build bạn run npm install --production thì nó sẽ chỉ install ở dependences, và nếu trong file app.js của bạn có require('helmet') (thư viện ở trong dev-dependencies) thì nó sẽ bị lỗi. 
+Đấy là những kiến thức mình biến về sự khác nhau của 2 thằng này. 
+
+Băng thông và thông lượng
