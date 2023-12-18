@@ -2,7 +2,7 @@
 
 const mongoose = require("mongoose");
 const connectString = `mongodb://localhost:27017/shopDEV `;
-const { countConnect } = require("./helpers/check.connect");
+const { countConnect } = require("../helpers/check.connect");
 
 class Database {
   constructor() {
