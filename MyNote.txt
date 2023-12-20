@@ -3,7 +3,9 @@ curl http://localhost:3055
 curl http://localhost:3055 --include
 
 node server.js
-node --watch server.js
+npm install --save-dev cross-env
+NODE_ENV=pro node --watch server.js
+-> $NODE_ENV:pro node --watch server.js
 
 npm i helmet --save-dev
 
