@@ -1,7 +1,7 @@
 const app = require("./src/app");
 const mongoose = require("mongoose");
 
-const PORT = 3055;
+const PORT = process.env.PORT || 3055;
 
 const server = app.listen(3055, () => {
   console.log("WSV project start with port ", PORT);
