@@ -10,6 +10,12 @@ console.log(`process`, process.env);
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(compression());
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
 //init db
 require("./dbs/init.mongodb");
@@ -17,13 +23,7 @@ require("./dbs/init.mongodb");
 // checkOverload();
 
 //init routes
-app.get("/", (req, res, next) => {
-  // const strCompress = "str Compress const";
-  return res.status(200).json({
-    message: "welcome to homepage",
-    // metadata: strCompress.repeat(100000),
-  });
-});
+app.use("", require("./routes"));
 
 //handling error
 

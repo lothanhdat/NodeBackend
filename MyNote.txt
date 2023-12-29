@@ -27,3 +27,10 @@ Băng thông và thông lượng
 ?????????????????????????????????????
 với node khi dùng require thì nó đã cache, nhưng cũng ko nên dùng cách dở đó.
 //https://youtu.be/jnxsMU5hjqs?list=UUMOky92hx0lZxVBi2BJ6Zm2Hg&t=442
+
+bảo mật token
+https://www.youtube.com/watch?v=pK3oBX0vB38
+
+Đội nhóm sẽ có mã code riêng khi respond http
+
+hàm JWT.verify  nhận  cả publicKey dạng string hay object

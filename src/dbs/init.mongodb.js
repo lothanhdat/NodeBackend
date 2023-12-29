@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const {
   db: { host, port, name },
 } = require("../configs/config.mongodb");
-const connectString = `mongodb://${host}:${port}/${name} `;
+const connectString = `mongodb://${host}:${port}/${name}`;
 console.log(connectString);
 const { countConnect } = require("../helpers/check.connect");
 
@@ -38,4 +38,4 @@ class Database {
 }
 
 const instanceMongodb = Database.getInstance();
-module.export = instanceMongodb;
+module.exports = instanceMongodb;
