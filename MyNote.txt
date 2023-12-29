@@ -34,3 +34,4 @@ https://www.youtube.com/watch?v=pK3oBX0vB38
 Đội nhóm sẽ có mã code riêng khi respond http
 
 hàm JWT.verify  nhận  cả publicKey dạng string hay object
+Khi logout phải xóa public key này trong db để đảm bảo cho user đúng ko ạ
