@@ -20,9 +20,14 @@ var keyTokenSchema = new Schema(
       type: String,
       required: true,
     },
-    refreshToken: {
+    refreshTokensUsed: {
+      // refresh token that is used
       type: Array,
       default: [],
+    },
+    refreshToken: {
+      type: String,
+      required: true,
     },
   },
   {

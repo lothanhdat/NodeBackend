@@ -7,6 +7,22 @@ x-api-key:9eee50cc628948eb782776d921fef2a4dc50d886c9985f7e6f789162fd5ef412c4578d
 
 {
     "name":"Shop TIPS",
-    "email":"Shoptips48@gmail.com",
+    "email":"Shoptips51@gmail.com",
     "password":"abc123"
 }
+
+### login
+POST {{url_dev}}shop/login
+Content-Type: application/json
+x-api-key:9eee50cc628948eb782776d921fef2a4dc50d886c9985f7e6f789162fd5ef412c4578dd239f37ef9c0dec399387b62dd4da98ed48e3447edf10fbeefa3566afa
+
+{
+    "email":"Shoptips51@gmail.com",
+    "password":"abc123"
+}
+
+### logout
+POST {{url_dev}}shop/logout
+x-client-id:65acef027d0963f341dcc63d
+x-api-key:9eee50cc628948eb782776d921fef2a4dc50d886c9985f7e6f789162fd5ef412c4578dd239f37ef9c0dec399387b62dd4da98ed48e3447edf10fbeefa3566afa
+authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWFjZWYwMjdkMDk2M2YzNDFkY2M2M2QiLCJlbWFpbCI6IlNob3B0aXBzNTFAZ21haWwuY29tIiwiaWF0IjoxNzA1ODQ4ODA1LCJleHAiOjE3MDYwMjE2MDV9.goC4ok7_rv-jyXPuJCocr5JPfL98J5FOo8MDJZxhbIo
