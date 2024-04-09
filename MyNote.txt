@@ -28,8 +28,12 @@ Băng thông và thông lượng
 với node khi dùng require thì nó đã cache, nhưng cũng ko nên dùng cách dở đó.
 //https://youtu.be/jnxsMU5hjqs?list=UUMOky92hx0lZxVBi2BJ6Zm2Hg&t=442
 
-bảo mật token
+# Bảo mật token
 https://www.youtube.com/watch?v=pK3oBX0vB38
+
+cookie - token : chung mục đích xác định danh tính và theo dõi người dùng.
+nó được đưa vào sử dụng để phân biệt phiên sử dụng của người dùng.
+
 
 Đội nhóm sẽ có mã code riêng khi respond http
 
@@ -37,3 +41,12 @@ hàm JWT.verify  nhận  cả publicKey dạng string hay object
 Khi logout phải xóa public key này trong db để đảm bảo cho user đúng ko ạ
 
 quản lý status code https://github.com/anonystick/httpStatusCode
+
+
+token theo thứ tự
+https://www.youtube.com/watch?v=noxqc_CpVLQ&t=1s
+https://www.youtube.com/watch?v=yv9vCIhfZEk
+
+https://www.youtube.com/watch?v=93fTk16-st0
+
+https://www.youtube.com/watch?v=1HHvCfAu008
