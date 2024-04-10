@@ -44,9 +44,17 @@ quản lý status code https://github.com/anonystick/httpStatusCode
 
 
 token theo thứ tự
-https://www.youtube.com/watch?v=noxqc_CpVLQ&t=1s
-https://www.youtube.com/watch?v=yv9vCIhfZEk
+https://www.youtube.com/watch?v=noxqc_CpVLQ&t=1s - OK
+https://www.youtube.com/watch?v=yv9vCIhfZEk - OK
 
 https://www.youtube.com/watch?v=93fTk16-st0
 
 https://www.youtube.com/watch?v=1HHvCfAu008
+
+# Lich su web
+web 1, web tinh, viết bài và đọc bài
+web 2, co log in , có tương tác client và server -> cần xác định và theo dõi hành vi của người dùng.
+
+tất cả hoạt động phải thuộc về 1 phiên hoặc thuộc vào một người, mỗi user có một session khác nhau.
+
+Cookie như một căn cước công dân.

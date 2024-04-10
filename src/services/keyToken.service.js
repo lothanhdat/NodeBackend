@@ -44,6 +44,11 @@ class KeyTokenService {
       .findOne({ user: new Types.ObjectId(userId) })
       .lean();
   };
+  static findByRefreshTokenUsed = async (refreshToken) => {
+    return await keytokenModel
+      .findOne({ refreshTokenUsed: refreshToken })
+      .lean();
+  };
 }
 
 module.exports = KeyTokenService;

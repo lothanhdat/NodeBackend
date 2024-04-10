@@ -19,6 +19,15 @@ const RoleShop = {
 };
 
 class AccessService {
+  /**
+   * check token used
+   */
+  static handlerRefreshToken = async (refreshToken) => {
+    const foundToken = await KeyTokenService.findByRefreshTokenUsed(
+      refreshToken
+    );
+  };
+
   static logout = async (keyStore) => {
     // console.log("keyStore--------------------", keyStore);
     const delKey = await KeyTokenService.removeKeyById(keyStore._id);
