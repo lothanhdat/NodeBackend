@@ -67,13 +67,23 @@ const electronicsSchema = new Schema({
     timestamps: true
 })
 
+//define the product type = furniture
+const furnitureSchema = new Schema({
+    product_shop: {
+        type: Schema.Types.ObjectId,
+        ref: 'Shop'
+    },
+    brand:{type:String, required:true},
+    size: String,
+    material: String,
+},{
+    collection: 'furniture',
+    timestamps: true
+})
+
 module.exports = {
-    product:model(DOCUMENT_NAME, productSchema),
-    clothing:model('Clothing', clothingSchema),
-    electronics:model('Electronics', electronicsSchema)
+    product: model(DOCUMENT_NAME, productSchema),
+    clothing: model('Clothing', clothingSchema),
+    electronics: model('Electronics', electronicsSchema),
+    furniture: model('Furniture', furnitureSchema)
 }
-
-
-// const Product = mongoose.model('Product', productSchema);
-
-// module.exports = Product;
