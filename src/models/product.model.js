@@ -32,7 +32,6 @@ const productSchema = new Schema({
     },
     product_attributes: {
         type: Schema.Types.Mixed,
-        required: true
     }},
     {
         collection: COLLECTION_NAME,
@@ -42,7 +41,7 @@ const productSchema = new Schema({
 
 //define the product type = clothing
 const clothingSchema = new Schema({
-    brand:{type:String, required:true},
+    brand:{type:String},
     size: String,
     material: String,
 },{
