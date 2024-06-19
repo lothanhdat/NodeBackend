@@ -4,9 +4,9 @@ const shopModel = require("../models/shop.model");
 const bcrypt = require("bcrypt");
 const crypto = require("node:crypto");
 const KeyTokenService = require("./keyToken.service");
-const { createTokenPair } = require("../auth/authUtils");
+const { createTokenPair, verifyJWT } = require("../auth/authUtils");
 const { getInfoData } = require("../utils");
-const { BadRequestError, AuthFailureError } = require("../core/error.response");
+const { BadRequestError, AuthFailureError, ForbiddenError } = require("../core/error.response");
 
 // service ///
 const { findByEmail } = require("./shop.service");
@@ -22,10 +22,87 @@ class AccessService {
   /**
    * check token used
    */
+  static handlerRefreshTokenV2 = async ({keyStore, user, refreshToken}) => {
+    const {userId, email} = user;
+    if(keyStore.refreshTokensUsed.includes(refreshToken)){
+      // delete all key of that user
+      await KeyTokenService.deleteKeyByUserId(userId);
+      throw new ForbiddenError('Something wrong happened, please login again');
+    }
+
+    if(keyStore.refreshToken !== refreshToken) throw new AuthFailureError('Refresh token not found, shop may not registered');
+
+    // check userId
+    const foundShop = await findByEmail({email});
+    if (!foundShop) throw new AuthFailureError('Shop not found');
+
+    //create new token pair
+    const tokens = await createTokenPair({userId,email}, keyStore.publicKey, keyStore.privateKey);
+
+    // update refresh token used
+    await keyStore.updateOne({
+      $set:{
+        refreshToken:tokens.refreshToken
+      },
+      $addToSet:{
+        refreshTokensUsed:refreshToken
+      }
+    })
+
+    return {
+      user,
+      tokens
+    }
+
+  };
+
   static handlerRefreshToken = async (refreshToken) => {
-    const foundToken = await KeyTokenService.findByRefreshTokenUsed(
-      refreshToken
-    );
+    // check if token is used
+    console.log('handlerRefreshToken activate with refresh token: ',refreshToken)
+    const foundToken = await KeyTokenService.findByRefreshTokenUsed(refreshToken);
+    console.log('foundedTokenUsed',foundToken)
+
+    //if yes
+    if(foundToken){
+      // decode to see who user is it
+      const {userId,email} = await verifyJWT(refreshToken, foundToken.privateKey);
+      console.log("decode to see who user is: ",{userId,email})
+
+      // delete all key of that user
+      await KeyTokenService.deleteKeyByUserId(userId);
+      throw new ForbiddenError('Something wrong happened, please login again');
+    }
+
+    // if the token is not used
+    const holderToken = await KeyTokenService.findByRefreshToken(refreshToken);
+    if (!holderToken) throw new AuthFailureError('Refresh token not found, shop may not registered');
+
+    //verify token
+    const {userId,email} = await verifyJWT(refreshToken, holderToken.privateKey);
+    console.log('verified token-----',{userId,email})
+
+    // check userId
+    const foundShop = await findByEmail({email});
+    if (!foundShop) throw new AuthFailureError('Shop not found');
+
+    //create new token pair
+    const tokens = await createTokenPair({userId,email}, holderToken.publicKey, holderToken.privateKey);
+
+    // update refresh token used
+    await holderToken.updateOne({
+      $set:{
+        refreshToken:tokens.refreshToken
+      },
+      $addToSet:{
+        refreshTokensUsed:refreshToken
+      }
+    })
+
+    return {
+      user: {userId,email},
+      tokens
+    }
+
   };
 
   static logout = async (keyStore) => {
@@ -35,6 +112,7 @@ class AccessService {
   };
 
   /*
+    Login step
     1- check email in dbs
     2- match password
     3- create AT vs RT and save
