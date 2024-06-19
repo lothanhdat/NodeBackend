@@ -58,3 +58,5 @@ web 2, co log in , có tương tác client và server -> cần xác định và 
 tất cả hoạt động phải thuộc về 1 phiên hoặc thuộc vào một người, mỗi user có một session khác nhau.
 
 Cookie như một căn cước công dân.
+
+func-12-------
