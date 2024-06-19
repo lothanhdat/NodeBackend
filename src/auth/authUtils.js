@@ -94,14 +94,15 @@ const authenticationV2 = asyncHandler(async (req, res, next) => {
   // 4- Check user in DBs?
   // 5- check keyStore with this userId
   // 6- return next()
-  const refreshToken = req.headers[HEADER.AUTHORIZATION];
-  if (!refreshToken) throw new AuthFailureError("Missing refresh token");
+  const accessToken = req.headers[HEADER.AUTHORIZATION];
+  if (!accessToken) throw new AuthFailureError("Missing refresh token");
 
   try {
-    const decodeUser = await JWT.verify(refreshToken, keyStore.publicKey);
+    const decodeUser = await JWT.verify(accessToken, keyStore.publicKey);
     if (userId !== decodeUser.userId)
       throw new AuthFailureError("Invalid userId");
     req.keyStore = keyStore;
+    req.user = decodeUser;
     return next();
   } catch (error) {
     throw error;
