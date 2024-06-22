@@ -1,3 +1,5 @@
+node v20.7.0
+mongo db
 Remove-item alias:curl
 curl http://localhost:3055
 curl http://localhost:3055 --include
@@ -8,6 +10,7 @@ NODE_ENV=pro node --watch server.js
 -> $NODE_ENV:pro node --watch server.js
 
 npm i helmet --save-dev
+npm i slugify -- save
 
 lúc test compression thì nhớ disable cache
 
@@ -60,3 +63,6 @@ tất cả hoạt động phải thuộc về 1 phiên hoặc thuộc vào một
 Cookie như một căn cước công dân.
 
 func-12-------
+func-16-------{
+    sửa schema product : tiếp tục 14:20
+}
