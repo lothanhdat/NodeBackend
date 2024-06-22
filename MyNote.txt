@@ -1,3 +1,5 @@
+node v20.7.0
+mongo db
 Remove-item alias:curl
 curl http://localhost:3055
 curl http://localhost:3055 --include
@@ -8,6 +10,7 @@ NODE_ENV=pro node --watch server.js
 -> $NODE_ENV:pro node --watch server.js
 
 npm i helmet --save-dev
+npm i slugify -- save
 
 lúc test compression thì nhớ disable cache
 
@@ -28,8 +31,12 @@ Băng thông và thông lượng
 với node khi dùng require thì nó đã cache, nhưng cũng ko nên dùng cách dở đó.
 //https://youtu.be/jnxsMU5hjqs?list=UUMOky92hx0lZxVBi2BJ6Zm2Hg&t=442
 
-bảo mật token
+# Bảo mật token
 https://www.youtube.com/watch?v=pK3oBX0vB38
+
+cookie - token : chung mục đích xác định danh tính và theo dõi người dùng.
+nó được đưa vào sử dụng để phân biệt phiên sử dụng của người dùng.
+
 
 Đội nhóm sẽ có mã code riêng khi respond http
 
@@ -37,3 +44,25 @@ hàm JWT.verify  nhận  cả publicKey dạng string hay object
 Khi logout phải xóa public key này trong db để đảm bảo cho user đúng ko ạ
 
 quản lý status code https://github.com/anonystick/httpStatusCode
+
+
+token theo thứ tự
+https://www.youtube.com/watch?v=noxqc_CpVLQ&t=1s - OK
+https://www.youtube.com/watch?v=yv9vCIhfZEk - OK
+
+https://www.youtube.com/watch?v=93fTk16-st0 - OK
+
+https://www.youtube.com/watch?v=1HHvCfAu008 - OK
+
+# Lich su web
+web 1, web tinh, viết bài và đọc bài
+web 2, co log in , có tương tác client và server -> cần xác định và theo dõi hành vi của người dùng.
+
+tất cả hoạt động phải thuộc về 1 phiên hoặc thuộc vào một người, mỗi user có một session khác nhau.
+
+Cookie như một căn cước công dân.
+
+func-12-------
+func-16-------{
+    sửa schema product : tiếp tục 14:20
+}
